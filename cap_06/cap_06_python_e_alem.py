@@ -50,7 +50,7 @@ class Trapezio(Area):
     def calcular_area(self) -> float:
         return ((self.base_maior + self.base_menor) * self.altura) / 2
 
-#verica valor digitado pelo usuario
+#Verifica valor digitado pelo usuario
 def inserir_valor(mensagem) -> float:
     while True:
         try:
@@ -62,7 +62,11 @@ def inserir_valor(mensagem) -> float:
         except ValueError:
             print("Valor inválido. Tente novamente.")
 
-#Classe para calcular area
+#Exibe area calculada
+def exibir_area(area: Area) -> None:
+    print(f"A área do terreno é: {area.calcular_area()} m²")
+
+#Calcula a area de acordo com a escolha do usuario
 def calcular_area():
     print("Escolha a forma da área:")
     print("1 - Quadrado")
@@ -84,16 +88,16 @@ def calcular_area():
           
     match escolha:
         case 1:
-            lado = inserir_valor('Digite a metragaem de um dos lados do terreno em metros: ')
+            lado = inserir_valor('Digite a largura do terreno em metros: ')
             return Quadrado(lado)
         case 2:
-            base = float(input("Digite a largura do terreno em metros: "))
-            altura = float(input("Digite a comprimento do terreno em metros: "))
+            base = inserir_valor("Digite a largura do terreno em metros: ")
+            altura = inserir_valor("Digite a comprimento do terreno em metros: ")
             return Retangulo(base, altura)
         case 3:
-            base_maior = float(input("Digite a largura maior do terreno em metros: "))
-            base_menor = float(input("Digite a largura menor do terreno em metros: "))
-            altura = float(input("Digite a comprimento do terreno em metros: "))
+            base_menor = inserir_valor("Digite a largura menor do terreno em metros: ")
+            base_maior = inserir_valor("Digite a largura maior do terreno em metros: ")
+            altura = inserir_valor("Digite a comprimento do terreno em metros: ")
             return Trapezio(base_maior, base_menor, altura)
         case 0:
             print("Saindo...")
@@ -102,4 +106,22 @@ def calcular_area():
             print("Opção inválida.")
             return None
 
+def main():
+    while True:
+        area = calcular_area()
+        if area is None:
+            break
+        exibir_area(area)
+        try:
+            continuar = input("Deseja calcular outra área? (S/N): ").strip().upper()
+            if continuar not in ['S', 'N']:
+                raise ValueError("Opção inválida.")
+            if continuar == 'N':
+                print("Saindo...")
+                break
+        except ValueError:
+            print("Opção inválida. Tente novamente.")
+            continue
+if __name__ == "__main__":
+    main()
 
