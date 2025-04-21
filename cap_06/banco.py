@@ -1,8 +1,10 @@
 #------------------------------------| BANCO DE DADOS |------------------------------------#
 
 import sqlite3
+from datetime import datetime
 
-def criar_tabelas():
+#Cria o banco de dados e as tabelas
+def criar_tabelas()-> None:
     conn = sqlite3.connect("simulacoes.db")
     cursor = conn.cursor()
 
@@ -27,3 +29,47 @@ def criar_tabelas():
 
     conn.commit()
     conn.close()
+
+
+#Insere os dados no banco de dados
+def inserir_area(area_obj)-> int:
+    conn = sqlite3.connect("simulacoes.db")
+    cursor = conn.cursor()
+
+    forma = area_obj.forma
+    area_calculada = area_obj.calcular_area()
+    data_criacao = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    cursor.execute('''
+        INSERT INTO areas (forma, area, data_criacao)
+        VALUES (?, ?, ?)
+    ''', (forma, area_calculada, data_criacao))
+
+    conn.commit()
+    area_id = cursor.lastrowid
+    conn.close()
+    return area_id
+
+#Insere as dimensões no banco de dados
+def inserir_dimensoes(area_id, dimensoes_dict)-> None:
+    conn = sqlite3.connect("simulacoes.db")
+    cursor = conn.cursor()
+
+    for nome, valor in dimensoes_dict.items():
+        cursor.execute('''
+            INSERT INTO dimensoes (id_area, nome_dimensao, valor)
+            VALUES (?, ?, ?)
+        ''', (area_id, nome, valor))
+
+    conn.commit()
+    conn.close()
+
+#Lê os dados do banco de dados
+def listar_areas_salvas()-> None:
+    conn = sqlite3.connect("simulacoes.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM areas")
+    registros = cursor.fetchall()
+    conn.close()
+    return registros
+
