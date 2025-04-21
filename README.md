@@ -1,9 +1,3 @@
----
-
-## 🧱 Estrutura recomendada para seu projeto
-
-Aqui está um modelo de README adaptado ao seu sistema:
-
 ```markdown
 # 🌱 Sistema de Planejamento e Escalonamento de Plantio e Colheita da Cana-de-Açúcar
 
