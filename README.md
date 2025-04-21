@@ -117,3 +117,4 @@ FIAP | Tecnologia em Inteligência Artificial
 [LinkedIn](https://www.linkedin.com/in/thiago-scutari-2aa0a097)
 
 ---
+```
