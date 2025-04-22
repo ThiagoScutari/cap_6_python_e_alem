@@ -165,18 +165,17 @@ def menu_principal():
             exportar_todas_simulacoes()
         case 0:
             print("Encerrando...")
-            return escolha
         case _:
             print("Opção inválida. Tente novamente.")
+    return escolha
             
 def main():
     while True:
-        menu_principal()
-        if menu_principal() == 0:
+        opcao = menu_principal()
+        if opcao == 0:
             break
         continuar = input("Deseja realizar outra operação? (S/N): ").strip().upper()
         if continuar == 'N':
-            print("Encerrando...")
             break
         elif continuar == 'S':
             continue
