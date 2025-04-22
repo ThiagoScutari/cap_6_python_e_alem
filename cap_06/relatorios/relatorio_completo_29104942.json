@@ -1,0 +1,32 @@
+[
+    {
+        "id_area": 1,
+        "forma": "Quadrado",
+        "area_m2": 40000.0,
+        "data_criacao": "2025-04-22 18:01:39",
+        "dimensoes": {
+            "lado": 200.0
+        }
+    },
+    {
+        "id_area": 2,
+        "forma": "Retângulo",
+        "area_m2": 80000.0,
+        "data_criacao": "2025-04-22 18:02:23",
+        "dimensoes": {
+            "base": 200.0,
+            "altura": 400.0
+        }
+    },
+    {
+        "id_area": 3,
+        "forma": "Trapézio",
+        "area_m2": 240000.0,
+        "data_criacao": "2025-04-22 18:02:40",
+        "dimensoes": {
+            "altura": 800.0,
+            "base_maior": 200.0,
+            "base_menor": 400.0
+        }
+    }
+]

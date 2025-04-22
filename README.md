@@ -11,7 +11,7 @@
 
 # 🌾 Sistema de Planejamento e Escalonamento de Plantio e Colheita da Cana-de-Açúcar
 
-## 📌 Nome do grupo: *A definir*
+## 📌 Grupo Faculdade FIAP
 
 ## 👨‍🎓 Integrantes:
 - Thiago Scutari - RM562831  

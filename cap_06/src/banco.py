@@ -1,8 +1,9 @@
 #------------------------------------| BANCO DE DADOS |------------------------------------#
 
-import sqlite3, json, csv, math, random, string
+import sqlite3, json, csv, math, random, string, os
 from datetime import datetime, timedelta
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #Cria o banco de dados e as tabelas
 def criar_tabelas()-> None:
@@ -259,6 +260,7 @@ def realizar_escalonamento():
 #------------------------------------| EXPORTAÇÃO |------------------------------------#
 #Exporta os dados para JSON e CSV de uma area específica
 def exportar_simulacao(id_area):
+    os.makedirs("relatorios", exist_ok=True)
     chave = gerar_chave_aleatoria()
     conn = sqlite3.connect("simulacoes.db")
     cursor = conn.cursor()
@@ -304,6 +306,7 @@ def exportar_simulacao(id_area):
 
 #Exporta todas as simulações para JSON e CSV
 def exportar_todas_simulacoes():
+    os.makedirs("relatorios", exist_ok=True)
     chave = gerar_chave_aleatoria()
     conn = sqlite3.connect("simulacoes.db")
     cursor = conn.cursor()
@@ -351,11 +354,14 @@ def exportar_todas_simulacoes():
 
 #Exporta dados de escalonamento
 def exportar_escalonamento_csv(id_area, tipo, data_inicio, area_total, capacidade_dia, qtd_maquinas):
+    diretorio_saida = os.path.join(BASE_DIR, "escalonamentos")
+    os.makedirs(diretorio_saida, exist_ok=True)
+
     chave = gerar_chave_aleatoria()
-    nome_arquivo = f"escalonamento_area_{id_area}_{tipo.lower()}_{chave}.csv"
+    nome_arquivo = os.path.join(diretorio_saida, f"escalonamento_area_{id_area}_{tipo.lower()}_{chave}.csv")
+
     total_dia = capacidade_dia * qtd_maquinas
     dias = math.ceil(area_total / total_dia)
-
     acumulado = 0
 
     with open(nome_arquivo, "w", newline='', encoding='utf-8') as f_csv:
@@ -382,4 +388,5 @@ def exportar_escalonamento_csv(id_area, tipo, data_inicio, area_total, capacidad
             ])
 
     print(f"✅ Escalonamento de {tipo} exportado para {nome_arquivo}")
+
 

@@ -68,6 +68,7 @@ def inserir_valor(mensagem: str) -> float:
             return valor
         except ValueError:
             print("Valor inválido. Tente novamente.")
+            continue
 
 #Insere nova area no banco de dados
 def cadastrar_nova_area():
@@ -83,8 +84,10 @@ def cadastrar_nova_area():
                 break
             else:
                 print(f'Opção inválida: {escolha}. Tente novamente.')
+                continue
         except ValueError:
             print("Entrada inválida. Tente novamente.")
+            continue
 
     match escolha:
         case 0:
@@ -141,10 +144,10 @@ def menu_principal():
             if escolha in [0, 1, 2, 3, 4, 5, 6]:
                 break
             else:
-                print(f'Opção inválida: {escolha}. Tente novamente.')
+                print(f'Opção inválida. Tente novamente.')
                 continue
         except ValueError:
-                print(f'Opção inválida: {escolha}. Tente novamente.')
+                print(f'Opção inválida. Tente novamente.')
                 continue
     match escolha:
         case 1:
@@ -157,6 +160,7 @@ def menu_principal():
             realizar_escalonamento()
         case 5:
             try:
+                mostrar_areas_salvas()
                 id_area = int(input("Digite o ID da área que deseja exportar: "))
                 exportar_simulacao(id_area)
             except ValueError:
@@ -181,6 +185,7 @@ def main():
             continue
         else:
             print("Opção inválida. Tente novamente.")
+            continue
 
 if __name__ == "__main__":
     main()

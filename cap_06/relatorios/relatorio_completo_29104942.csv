@@ -1,0 +1,7 @@
+ID,Forma,Área (m²),Data de Criação,Dimensão,Valor (m)
+1,Quadrado,40000.0,2025-04-22 18:01:39,lado,200.0
+2,Retângulo,80000.0,2025-04-22 18:02:23,base,200.0
+2,Retângulo,80000.0,2025-04-22 18:02:23,altura,400.0
+3,Trapézio,240000.0,2025-04-22 18:02:40,altura,800.0
+3,Trapézio,240000.0,2025-04-22 18:02:40,base_maior,200.0
+3,Trapézio,240000.0,2025-04-22 18:02:40,base_menor,400.0

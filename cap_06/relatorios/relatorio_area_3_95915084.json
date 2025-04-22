@@ -1,0 +1,11 @@
+{
+    "id_area": 3,
+    "forma": "Trapézio",
+    "area_m2": 240000.0,
+    "data_criacao": "2025-04-22 18:02:40",
+    "dimensoes": {
+        "altura": 800.0,
+        "base_maior": 200.0,
+        "base_menor": 400.0
+    }
+}
