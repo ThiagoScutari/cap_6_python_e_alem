@@ -9,7 +9,7 @@ Desenvolver um sistema em Python que permita ao produtor rural ou técnico agrí
 
 #------------------------------------| PROGRAMA |------------------------------------#
 from banco import criar_tabelas, inserir_area, inserir_dimensoes, listar_areas_salvas
-from datetime import datetime
+from datetime import datetime, timedelta
 
 #Cria o banco de dados e as tabelas
 criar_tabelas()
@@ -57,7 +57,7 @@ class Trapezio(Area):
         return ((self.base_maior + self.base_menor) * self.altura) / 2
 
 #Verifica valor digitado pelo usuario
-def inserir_valor(mensagem) -> float:
+def inserir_valor(mensagem: str) -> float:
     while True:
         try:
             valor = float(input(mensagem))
@@ -81,6 +81,36 @@ def mostrar_areas_salvas()-> None:
     print("\nÁreas cadastradas:")
     for id_area, forma, area, data in registros:
         print(f"ID: {id_area} | Forma: {forma} | Área: {area:.2f} m² | Data: {data}")
+
+#Ler quantiade de máquinas
+def inserir_qtd_maquinas(tipo: str) -> int:
+    while True:
+        try:
+            qtd = int(input(f"Digite a quantidade de máquinas para {tipo}: "))
+            if qtd <= 0:
+                print("A quantidade deve ser maior que zero.")
+                continue
+            return qtd
+        except ValueError:
+            print("Entrada inválida. Digite um número inteiro.")
+
+#Calcula dias para plantio e colheita
+def calcular_dias_execucao(area_total: float, capacidade_maquina: int, qtd_maquinas: int)-> float:
+    total_capacidade_dia = capacidade_maquina * qtd_maquinas
+    dias = area_total / total_capacidade_dia
+    return round(dias, 2)
+
+#Calcula escalonamento de plantio e colheita
+def gerar_escalonamento(area_total: float, capacidade_dia: float, qtd_maquinas: int, tipo: str)-> None:
+    data_inicio = datetime.today()
+    dias = calcular_dias_execucao(area_total, capacidade_dia, qtd_maquinas)
+
+    print(f"\n📆 Escalonamento de {tipo.capitalize()}:")
+    for i in range(int(dias)):
+        data_lote = data_inicio + timedelta(days=i)
+        print(f"Lote {i+1}: {data_lote.strftime('%d/%m/%Y')}")
+
+
 
 #Calcula a area de acordo com a escolha do usuario
 def calcular_area():
