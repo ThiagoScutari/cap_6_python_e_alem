@@ -17,7 +17,7 @@
 - Thiago Scutari - RM562831  
 - Marcos Fernandes - RM564998  
 - Henrique Ribeiro Siqueira - RM565044
-- Victor - RM...  
+- Victor Emmanuel Lucioli Barbosa - RM562884  
 - Mariana Cavalcante Oliveira - RM561678
 
 ## 👩‍🏫 Professores:
