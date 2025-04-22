@@ -1,0 +1,9 @@
+{
+    "id_area": 1,
+    "forma": "Quadrado",
+    "area_m2": 10000.0,
+    "data_criacao": "2025-04-21 19:11:01",
+    "dimensoes": {
+        "lado": 100.0
+    }
+}

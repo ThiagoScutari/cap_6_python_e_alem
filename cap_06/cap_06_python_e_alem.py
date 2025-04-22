@@ -8,8 +8,7 @@ Desenvolver um sistema em Python que permita ao produtor rural ou técnico agrí
 '''
 
 #------------------------------------| PROGRAMA |------------------------------------#
-from banco import criar_tabelas, inserir_area, inserir_dimensoes, listar_areas_salvas
-from datetime import datetime, timedelta
+from banco import criar_tabelas, inserir_area, inserir_dimensoes, mostrar_areas_salvas,visualizar_dimensoes, realizar_escalonamento, exportar_simulacao, exportar_todas_simulacoes
 
 #Cria o banco de dados e as tabelas
 criar_tabelas()
@@ -18,6 +17,7 @@ print("-" * 90)
 print("Sistema de Planejamento e Escalonamento de Plantio e Colheita da Cana-de-Açúcar")
 print("-" * 90)
 
+#------------------------------------| CLASSES |------------------------------------#
 #Classe para instancias areas
 class Area:
     def __init__(self, forma) -> None:
@@ -56,6 +56,7 @@ class Trapezio(Area):
     def calcular_area(self) -> float:
         return ((self.base_maior + self.base_menor) * self.altura) / 2
 
+#------------------------------------| FUNÇÕES |------------------------------------#
 #Verifica valor digitado pelo usuario
 def inserir_valor(mensagem: str) -> float:
     while True:
@@ -68,111 +69,112 @@ def inserir_valor(mensagem: str) -> float:
         except ValueError:
             print("Valor inválido. Tente novamente.")
 
-#Exibe area calculada
-def exibir_area(area: Area) -> None:
-    print(f"A área do terreno é: {area.calcular_area()} m²")
-
-#Exibe as areas cadastradas
-def mostrar_areas_salvas()-> None:
-    registros = listar_areas_salvas()
-    if not registros:
-        print("Sem registros cadastrados no banco.")
-        return
-    print("\nÁreas cadastradas:")
-    for id_area, forma, area, data in registros:
-        print(f"ID: {id_area} | Forma: {forma} | Área: {area:.2f} m² | Data: {data}")
-
-#Ler quantiade de máquinas
-def inserir_qtd_maquinas(tipo: str) -> int:
-    while True:
-        try:
-            qtd = int(input(f"Digite a quantidade de máquinas para {tipo}: "))
-            if qtd <= 0:
-                print("A quantidade deve ser maior que zero.")
-                continue
-            return qtd
-        except ValueError:
-            print("Entrada inválida. Digite um número inteiro.")
-
-#Calcula dias para plantio e colheita
-def calcular_dias_execucao(area_total: float, capacidade_maquina: int, qtd_maquinas: int)-> float:
-    total_capacidade_dia = capacidade_maquina * qtd_maquinas
-    dias = area_total / total_capacidade_dia
-    return round(dias, 2)
-
-#Calcula escalonamento de plantio e colheita
-def gerar_escalonamento(area_total: float, capacidade_dia: float, qtd_maquinas: int, tipo: str)-> None:
-    data_inicio = datetime.today()
-    dias = calcular_dias_execucao(area_total, capacidade_dia, qtd_maquinas)
-
-    print(f"\n📆 Escalonamento de {tipo.capitalize()}:")
-    for i in range(int(dias)):
-        data_lote = data_inicio + timedelta(days=i)
-        print(f"Lote {i+1}: {data_lote.strftime('%d/%m/%Y')}")
-
-
-
-#Calcula a area de acordo com a escolha do usuario
-def calcular_area():
+#Insere nova area no banco de dados
+def cadastrar_nova_area():
     print("Escolha a forma da área:")
     print("1 - Quadrado")
     print("2 - Retângulo")
     print("3 - Trapézio")
-    print("4 - Listar areas cadastradas")
     print("0 - Sair")
-
     while True:
         try:
-            escolha = int(input("Digite o número da forma desejada: "))
-            if escolha in [0, 1, 2, 3, 4]:
+            escolha = int(input("Digite a opção desejada: "))
+            if escolha in [0, 1, 2, 3]:
+                break
+            else:
+                print(f'Opção inválida: {escolha}. Tente novamente.')
+        except ValueError:
+            print("Entrada inválida. Tente novamente.")
+
+    match escolha:
+        case 0:
+            print("Saindo...")
+            return
+        case 1:
+            area = Quadrado(inserir_valor('Digite a largura do terreno em metros: '))
+        case 2:
+            base = inserir_valor("Digite a largura do terreno em metros: ")
+            altura = inserir_valor("Digite o comprimento do terreno em metros: ")
+            area = Retangulo(base, altura)
+        case 3:
+            base_maior = inserir_valor("Digite a largura maior do terreno em metros: ")
+            base_menor = inserir_valor("Digite a largura menor do terreno em metros: ")
+            altura = inserir_valor("Digite o comprimento do terreno em metros: ")
+            area = Trapezio(base_maior, base_menor, altura)
+
+    area_id = inserir_area(area)
+
+    dimensoes = {
+        "lado": getattr(area, 'lado', None),
+        "base": getattr(area, 'base', None),
+        "altura": getattr(area, 'altura', None),
+        "base_maior": getattr(area, 'base_maior', None),
+        "base_menor": getattr(area, 'base_menor', None)
+    }
+    dimensoes = {k: v for k, v in dimensoes.items() if v is not None}
+
+    inserir_dimensoes(area_id, dimensoes)
+    exibir_area(area)
+
+#Exibe area calculada
+def exibir_area(area: Area) -> None:
+    print(f"A área do terreno é: {area.calcular_area()} m²")
+
+#------------------------------------| MENU PRINCIPAL |------------------------------------#
+
+#Calcula a area de acordo com a escolha do usuario
+def menu_principal():
+    print("\n" + "="*60)
+    print("MENU PRINCIPAL")
+    print("="*60)
+    print("1 - Cadastrar nova área")
+    print("2 - Listar áreas cadastradas")
+    print("3 - Visualizar dimensões de uma área")
+    print("4 - Calcular escalonamento de plantio e colheita")
+    print("5 - Exportar simulação em JSON e CSV")
+    print("6 - Exportar todas as simulações em JSON e CSV")
+    print("0 - Sair")
+    print("="*60)
+    while True:
+        try:
+            escolha = int(input("Digite a opção desejada: "))
+            if escolha in [0, 1, 2, 3, 4, 5, 6]:
                 break
             else:
                 print(f'Opção inválida: {escolha}. Tente novamente.')
                 continue
         except ValueError:
                 print(f'Opção inválida: {escolha}. Tente novamente.')
-                continue      
-          
+                continue
     match escolha:
         case 1:
-            base = inserir_valor('Digite a largura do terreno em metros: ')
-            return Quadrado(base)
+            cadastrar_nova_area()
         case 2:
-            base = inserir_valor("Digite a largura do terreno em metros: ")
-            altura = inserir_valor("Digite a comprimento do terreno em metros: ")
-            return Retangulo(base, altura)
-        case 3:
-            base_maior = inserir_valor("Digite a largura maior do terreno em metros: ")
-            base_menor = inserir_valor("Digite a largura menor do terreno em metros: ")
-            altura = inserir_valor("Digite a comprimento do terreno em metros: ")
-            return Trapezio(base_maior, base_menor, altura)
-        case 4:
             mostrar_areas_salvas()
+        case 3:
+            visualizar_dimensoes()
+        case 4:
+            realizar_escalonamento()
+        case 5:
+            try:
+                id_area = int(input("Digite o ID da área que deseja exportar: "))
+                exportar_simulacao(id_area)
+            except ValueError:
+                print("ID inválido.")
+        case 6:
+            exportar_todas_simulacoes()
         case 0:
-            print("Saindo...")
-            return None
+            print("Encerrando...")
+            return escolha
         case _:
-            print("Opção inválida.")
-            return None
-
+            print("Opção inválida. Tente novamente.")
+            
 def main():
     while True:
-        area = calcular_area()
-        if area is None:
+        menu_principal()
+        if menu_principal() == 0:
             break
-        area_id = inserir_area(area)
-        dimensoes = {
-            "lado": getattr(area, 'lado', None),
-            "base": getattr(area, 'base', None),
-            "altura": getattr(area, 'altura', None),
-            "base_maior": getattr(area, 'base_maior', None),
-            "base_menor": getattr(area, 'base_menor', None)
-        }
-        # Remove as dimensões com valor None
-        dimensoes = {k: v for k, v in dimensoes.items() if v is not None}
-        inserir_dimensoes(area_id, dimensoes)
-        exibir_area(area)
-        continuar = input("Deseja calcular outra área? (S/N): ").strip().upper()
+        continuar = input("Deseja realizar outra operação? (S/N): ").strip().upper()
         if continuar == 'N':
             print("Encerrando...")
             break
