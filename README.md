@@ -11,14 +11,14 @@
 
 # 🌾 Sistema de Planejamento e Escalonamento de Plantio e Colheita da Cana-de-Açúcar
 
-## 📌 Grupo Faculdade FIAP
+## 📌 Grupo: 81
 
 ## 👨‍🎓 Integrantes:
-- Thiago Scutari - RM562831  
-- Marcos Fernandes - RM564998  
-- Henrique Ribeiro Siqueira - RM565044
-- Victor Emmanuel Lucioli Barbosa - RM562884  
-- Mariana Cavalcante Oliveira - RM561678
+- Thiago Scutari - RM562831 | thiago.scutari@outlook.com 
+- Marcos Fernandes - RM564998 | mareligumarcos@gmail.com
+- Henrique Ribeiro Siqueira - RM565044 | henrique.ribeiro1201@gmail.com
+- Victor Emmanuel Lucioli Barbosa - RM562884 | victorluciolibarbosa.2004@gmail.com
+- Mariana Cavalcante Oliveira - RM561678 | mari.kvalcant@gmail.com
 
 ## 👩‍🏫 Professores:
 
