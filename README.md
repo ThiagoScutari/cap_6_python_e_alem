@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://www.fiap.com.br/">
-    <img src="https://www.fiap.com.br/wp-content/themes/fiap2016/images/logo.png" alt="FIAP - Faculdade de Informática e Administração Paulista" width="40%">
+    <img src="cap_06/logo-fiap.png" alt="FIAP - Faculdade de Informática e Administração Paulista" width="40%">
   </a>
 </p>
 
