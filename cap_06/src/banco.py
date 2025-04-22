@@ -287,12 +287,12 @@ def exportar_simulacao(id_area):
     }
 
     # Exporta para JSON
-    with open(f"relatorio_area_{chave}.json", "w", encoding="utf-8") as f_json:
+    with open(f"relatorios/relatorio_area_{id_area}_{chave}.json", "w", encoding="utf-8") as f_json:
         json.dump(dados, f_json, indent=4, ensure_ascii=False)
     print(f"✅ Relatório JSON exportado: relatorio_area_{id_area}.json")
-
+ 
     # Exporta para CSV
-    with open(f"relatorio_area_{chave}.csv", "w", newline='', encoding="utf-8") as f_csv:
+    with open(f"relatorios/relatorio_area_{id_area}_{chave}.csv", "w", newline="", encoding="utf-8") as f_csv:
         writer = csv.writer(f_csv)
         writer.writerow(["ID", "Forma", "Área (m²)", "Data de Criação"])
         writer.writerow([id_area, forma, area_total, data])
@@ -339,12 +339,12 @@ def exportar_todas_simulacoes():
     conn.close()
 
     # Exporta JSON
-    with open(f"relatorio_completo_{chave}.json", "w", encoding="utf-8") as f_json:
+    with open(f"relatorios/relatorio_completo_{chave}.json", "w", encoding="utf-8") as f_json:
         json.dump(relatorio_json, f_json, indent=4, ensure_ascii=False)
     print(f"✅ Relatório JSON exportado: relatorio_completo_{chave}.json")
 
     # Exporta CSV
-    with open(f"relatorio_completo_{chave}.csv", "w", newline='', encoding="utf-8") as f_csv:
+    with open(f"relatorios/relatorio_completo_{chave}.csv", "w", newline='', encoding="utf-8") as f_csv:
         writer = csv.writer(f_csv)
         writer.writerows(relatorio_csv)
     print(f"✅ Relatório CSV exportado: relatorio_completo_{chave}.csv")

@@ -15,10 +15,10 @@
 
 ## 👨‍🎓 Integrantes:
 - Thiago Scutari - RM562831  
-- Marcos Fernandes - RM...  
-- Henrique - RM...  
+- Marcos Fernandes - RM564998  
+- Henrique Ribeiro Siqueira - RM565044
 - Victor - RM...  
-- Mariana - RM...
+- Mariana Cavalcante Oliveira - RM561678
 
 ## 👩‍🏫 Professores:
 
@@ -75,7 +75,7 @@ cap_06/
 
 ### ✔️ Requisitos:
 - Python 3.10+
-- Biblioteca padrão do Python (`sqlite3`, `csv`, `json`)
+- Biblioteca padrão do Python (`sqlite3`, `csv`, `json`, `math`, `random`, `string`, `datetime`)
 - Sistema operacional: Windows/Linux/Mac
 
 ### ▶️ Passo a passo:

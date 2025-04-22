@@ -1,2 +1,6 @@
 # Ignorar banco de dados local
-cap_06/simulacoes.db
+.\__pycache__/
+__pycache__/
+*.pyc
+*.db
+*.docx
