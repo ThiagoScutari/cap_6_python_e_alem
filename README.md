@@ -84,7 +84,7 @@ cap_06/
 
 ```bash
 git clone https://github.com/ThiagoScutari/cap_6_python_e_alem.git
-cd cap_6_python_e_alem
+cd cap_6
 ```
 
 2. **Instale as dependências:**
