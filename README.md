@@ -1,124 +1,116 @@
-```markdown
-# 🌱 Sistema de Planejamento e Escalonamento de Plantio e Colheita da Cana-de-Açúcar
 
-Este projeto simula o planejamento de áreas de cultivo de cana-de-açúcar, permitindo o cadastro de terrenos com formas geométricas variadas, cálculo de área, estimativa de tempo de plantio e colheita e exportação dos dados. A solução persiste os dados em um banco SQLite e fornece ferramentas para análise posterior em JSON e CSV.
+# FIAP - Faculdade de Informática e Administração Paulista
 
----
+<p align="center">
+<a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
+</p>
 
-## 🧠 Objetivo
+<br>
 
-Proporcionar uma solução prática para apoio ao planejamento agrícola com integração de:
+# 🌾 Sistema de Planejamento e Escalonamento de Plantio e Colheita da Cana-de-Açúcar
 
-- Programação orientada a objetos (POO)
-- Manipulação de banco de dados relacional (SQLite)
-- Validação de entrada
-- Interface interativa no terminal
-- Exportação de dados estruturados
+## 📌 Nome do grupo: *A definir*
 
----
+## 👨‍🎓 Integrantes:
+- Thiago Scutari - RM562831  
+- Marcos Fernandes - RM...  
+- Henrique - RM...  
+- Victor - RM...  
+- Mariana - RM...
 
-## ⚙️ Funcionalidades
+## 👩‍🏫 Professores:
 
-✅ Cálculo de área com base nas formas:
-- Quadrado
-- Retângulo
-- Trapézio
+### Tutor  
+- Leonardo Ruiz Orabona
 
-✅ Cálculo de escalonamento de plantio e colheita com base na capacidade por máquina
-
-✅ Armazenamento persistente dos dados:
-- Tabela de áreas
-- Tabela de dimensões (relacionada por ID)
-
-✅ Menu interativo com as opções:
-1. Cadastrar nova área  
-2. Listar áreas cadastradas  
-3. Visualizar dimensões de uma área  
-4. Calcular escalonamento de plantio e colheita  
-5. Exportar simulação por ID (JSON e CSV)  
-6. Exportar todas as simulações (JSON e CSV)  
-0. Sair
-
-✅ Exportações:
-- `relatorio_area_<id>.json` e `relatorio_area_<id>.csv`
-- `relatorio_completo.json` e `relatorio_completo.csv`
+### Coordenador  
+- Andre Godoi Chiovato
 
 ---
 
-## 🧪 Como Executar
+## 📜 Descrição
 
-### 1. Clone o repositório
+Este projeto tem como objetivo desenvolver uma solução prática e funcional para o **planejamento de plantio e colheita da cultura da cana-de-açúcar**, com base nas necessidades reais do agronegócio brasileiro, sobretudo na **redução de perdas por colheita mecanizada desorganizada**.
+
+A aplicação contempla:
+
+- Cálculo da área do terreno a partir da forma geométrica (quadrado, retângulo, trapézio)
+- Escalonamento de plantio e colheita com datas definidas pelo usuário
+- Entrada de dados personalizados: número de máquinas e produtividade diária
+- Geração de indicadores por lote com percentual de execução
+- Alertas operacionais com sugestões de ajuste na capacidade
+- Exportação de relatórios em JSON e CSV com chave única
+- Interface em terminal com validação de entradas e usabilidade simples
+- Banco de dados SQLite para persistência de informações
+
+---
+
+## 📁 Estrutura de pastas
+
+```
+.
+├── assets/                 # Imagens e elementos visuais
+├── document/               # Documentação de apoio (pode incluir PDF, outros arquivos)
+├── src/                    # Código-fonte do projeto
+│   ├── main.py             # Arquivo principal
+│   └── banco.py            # Funções de banco de dados
+├── relatorio_area_*.json  # Exportações em JSON por simulação
+├── relatorio_area_*.csv   # Exportações em CSV por simulação
+├── escalonamento_area_*.csv  # Exportações específicas de plantio e colheita
+├── requirements.txt        # Bibliotecas utilizadas
+└── README.md               # Guia do projeto
+```
+
+---
+
+## 🔧 Como executar o projeto
+
+### ✔️ Requisitos:
+- Python 3.10+
+- Biblioteca padrão do Python (`sqlite3`, `csv`, `json`)
+- Sistema operacional: Windows/Linux/Mac
+
+### ▶️ Passo a passo:
+
+1. **Clone o repositório:**
+
 ```bash
 git clone https://github.com/ThiagoScutari/cap_6_python_e_alem.git
+cd cap_6_python_e_alem
 ```
 
-### 2. Acesse a pasta do projeto
-```bash
-cd cap_6_python_e_alem/cap_06
-```
+2. **Instale as dependências:**
 
-### 3. Instale as dependências (se necessário)
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Execute o programa
+3. **Execute o programa:**
+
 ```bash
-python cap_06_python_e_alem.py
+python main.py
 ```
 
 ---
 
-## 🗂 Estrutura do Projeto
+## 🗃 Histórico de Lançamentos
 
-```
-cap_06/
-│
-├── banco.py                  # Persistência no SQLite
-├── cap_06_python_e_alem.py   # Código principal do sistema
-├── simulacoes.db             # Banco local (não versionado)
-├── requirements.txt          # Bibliotecas necessárias
-├── relatorio_area_<id>.json  # Exportações individuais (geradas pelo sistema)
-├── relatorio_completo.json   # Exportação de todo o banco
-└── README.md                 # Este arquivo
-```
+* 1.0.0 - 22/04/2025  
+  - Versão final com escalonamento, exportação, banco de dados, alertas e interface interativa
 
----
+* 0.9.0 - 20/04/2025  
+  - Implementação de barra de progresso, datas configuráveis e alertas de capacidade
 
-## 🖼 Exemplo de Execução
+* 0.8.0 - 18/04/2025  
+  - Exportação CSV e JSON com chave única por execução
 
-```
-============================================================
-MENU PRINCIPAL
-============================================================
-1 - Cadastrar nova área
-2 - Listar áreas cadastradas
-3 - Visualizar dimensões de uma área
-4 - Calcular escalonamento de plantio e colheita
-5 - Exportar simulação em JSON e CSV
-6 - Exportar todas as simulações em JSON e CSV
-0 - Sair
-============================================================
-```
+* 0.6.0 - 15/04/2025  
+  - Persistência com SQLite e visualização de dimensões
 
 ---
 
-## 📌 Observações
+## 📋 Licença
 
-- O banco `simulacoes.db` é criado automaticamente.
-- Os arquivos `.json` e `.csv` são gerados na raiz da pasta do projeto.
-- O projeto está preparado para expansão futura (GUI, exportação PDF, integração com Oracle DB, etc.)
+Este projeto foi desenvolvido como parte do curso da FIAP e está licenciado sob [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1).
 
 ---
-
-## 👨‍💻 Autor
-
-**Thiago Scutari da Silva**  
-Analista de Negócios e Projetos  
-FIAP | Tecnologia em Inteligência Artificial
-[LinkedIn](https://www.linkedin.com/in/thiago-scutari-2aa0a097)
-
-
----
-
-```
