@@ -2,7 +2,7 @@
 # FIAP - Faculdade de Informática e Administração Paulista
 
 <p align="center">
-<a href= "https://www.fiap.com.br/"><img src="assets/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
+<a href= "https://www.fiap.com.br/"><img src="documents/logo-fiap.png" alt="FIAP - Faculdade de Informática e Admnistração Paulista" border="0" width=40% height=40%></a>
 </p>
 
 <br>
@@ -48,17 +48,23 @@ A aplicação contempla:
 ## 📁 Estrutura de pastas
 
 ```
-.
-├── assets/                 # Imagens e elementos visuais
-├── document/               # Documentação de apoio (pode incluir PDF, outros arquivos)
-├── src/                    # Código-fonte do projeto
-│   ├── main.py             # Arquivo principal
-│   └── banco.py            # Funções de banco de dados
-├── relatorio_area_*.json  # Exportações em JSON por simulação
-├── relatorio_area_*.csv   # Exportações em CSV por simulação
-├── escalonamento_area_*.csv  # Exportações específicas de plantio e colheita
-├── requirements.txt        # Bibliotecas utilizadas
-└── README.md               # Guia do projeto
+cap_06/
+├── src/
+│   ├── main.py
+│   └── banco.py
+├── relatorios/
+│   ├── relatorio_area_1.csv
+│   └── relatorio_area_1.json
+├── escalonamentos/
+│   ├── escalonamento_area_1_colheita_*.csv
+│   └── escalonamento_area_1_plantio_*.csv
+├── document/
+│   ├── Simplificado.docx
+│   └── variaveis plantacao de Cana-de-Açúcar[1].docx
+├── simulacoes.db
+├── requirements.txt
+└── README.md
+
 ```
 
 ---
@@ -114,3 +120,10 @@ python main.py
 Este projeto foi desenvolvido como parte do curso da FIAP e está licenciado sob [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1).
 
 ---
+
+[LinkedIn](https://www.linkedin.com/in/thiago-scutari-2aa0a097)
+[Github](https://github.com/ThiagoScutari)
+
+---
+
+```
