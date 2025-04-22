@@ -1,37 +1,47 @@
 ```markdown
 # 🌱 Sistema de Planejamento e Escalonamento de Plantio e Colheita da Cana-de-Açúcar
 
-Este projeto simula o planejamento e cálculo da área de cultivo de cana-de-açúcar, com base em formas geométricas comuns (quadrado, retângulo e trapézio). Também realiza o registro das simulações em banco de dados local (SQLite), permitindo o acompanhamento histórico das áreas cadastradas.
+Este projeto simula o planejamento de áreas de cultivo de cana-de-açúcar, permitindo o cadastro de terrenos com formas geométricas variadas, cálculo de área, estimativa de tempo de plantio e colheita e exportação dos dados. A solução persiste os dados em um banco SQLite e fornece ferramentas para análise posterior em JSON e CSV.
 
 ---
 
 ## 🧠 Objetivo
 
-Criar uma solução em Python que simule a realidade do agronegócio — com foco no plantio de cana — integrando conceitos de:
+Proporcionar uma solução prática para apoio ao planejamento agrícola com integração de:
 
-- Programação orientada a objetos
-- Validação de dados
-- Manipulação de banco de dados SQLite
-- Estrutura modular e reutilizável
+- Programação orientada a objetos (POO)
+- Manipulação de banco de dados relacional (SQLite)
+- Validação de entrada
+- Interface interativa no terminal
+- Exportação de dados estruturados
 
 ---
 
 ## ⚙️ Funcionalidades
 
-- Cálculo de área de cultivo com diferentes formas geométricas
-- Validação de entradas numéricas do usuário
-- Registro automático da área e suas dimensões no banco de dados `simulacoes.db`
-- Consulta de áreas cadastradas
-- Preparado para futura expansão (ex: escalonamento, exportação, migração para Oracle)
+✅ Cálculo de área com base nas formas:
+- Quadrado
+- Retângulo
+- Trapézio
 
----
+✅ Cálculo de escalonamento de plantio e colheita com base na capacidade por máquina
 
-## 🛠 Tecnologias e Recursos Utilizados
+✅ Armazenamento persistente dos dados:
+- Tabela de áreas
+- Tabela de dimensões (relacionada por ID)
 
-- Python 3.13+
-- SQLite3 (banco de dados local)
-- VSCode + Extensão SQLite Viewer
-- Controle de versão com Git/GitHub
+✅ Menu interativo com as opções:
+1. Cadastrar nova área  
+2. Listar áreas cadastradas  
+3. Visualizar dimensões de uma área  
+4. Calcular escalonamento de plantio e colheita  
+5. Exportar simulação por ID (JSON e CSV)  
+6. Exportar todas as simulações (JSON e CSV)  
+0. Sair
+
+✅ Exportações:
+- `relatorio_area_<id>.json` e `relatorio_area_<id>.csv`
+- `relatorio_completo.json` e `relatorio_completo.csv`
 
 ---
 
@@ -52,24 +62,24 @@ cd cap_6_python_e_alem/cap_06
 pip install -r requirements.txt
 ```
 
-### 4. Execute o programa principal
+### 4. Execute o programa
 ```bash
 python cap_06_python_e_alem.py
 ```
 
-> O banco de dados `simulacoes.db` será criado automaticamente com as tabelas necessárias.
-
 ---
 
-## 🗂 Estrutura de Diretórios
+## 🗂 Estrutura do Projeto
 
 ```
 cap_06/
 │
-├── banco.py                  # Módulo de persistência (SQLite)
-├── cap_06_python_e_alem.py   # Lógica principal e interface com o usuário
-├── requirements.txt          # Dependências do projeto
-├── simulacoes.db             # (ignorado no Git) Banco local com simulações
+├── banco.py                  # Persistência no SQLite
+├── cap_06_python_e_alem.py   # Código principal do sistema
+├── simulacoes.db             # Banco local (não versionado)
+├── requirements.txt          # Bibliotecas necessárias
+├── relatorio_area_<id>.json  # Exportações individuais (geradas pelo sistema)
+├── relatorio_completo.json   # Exportação de todo o banco
 └── README.md                 # Este arquivo
 ```
 
@@ -78,28 +88,26 @@ cap_06/
 ## 🖼 Exemplo de Execução
 
 ```
-Sistema de Planejamento e Escalonamento de Plantio e Colheita da Cana-de-Açúcar
-
-Escolha a forma da área:
-1 - Quadrado
-2 - Retângulo
-3 - Trapézio
-4 - Listar áreas cadastradas
+============================================================
+MENU PRINCIPAL
+============================================================
+1 - Cadastrar nova área
+2 - Listar áreas cadastradas
+3 - Visualizar dimensões de uma área
+4 - Calcular escalonamento de plantio e colheita
+5 - Exportar simulação em JSON e CSV
+6 - Exportar todas as simulações em JSON e CSV
 0 - Sair
-
-Áreas cadastradas:
-ID: 1 | Forma: Quadrado | Área: 10000.00 m² | Data: 2025-04-21 19:11:01
+============================================================
 ```
 
 ---
 
 ## 📌 Observações
 
-- O projeto está preparado para evoluções como:
-  - Cálculo de escalonamento de plantio e colheita
-  - Exportação em JSON
-  - Integração com Oracle DB
-- O banco de dados `simulacoes.db` **não é versionado**. Ele será recriado automaticamente na primeira execução.
+- O banco `simulacoes.db` é criado automaticamente.
+- Os arquivos `.json` e `.csv` são gerados na raiz da pasta do projeto.
+- O projeto está preparado para expansão futura (GUI, exportação PDF, integração com Oracle DB, etc.)
 
 ---
 
@@ -110,5 +118,7 @@ Analista de Negócios e Projetos
 FIAP | Tecnologia em Inteligência Artificial
 [LinkedIn](https://www.linkedin.com/in/thiago-scutari-2aa0a097)
 
+
 ---
+
 ```
